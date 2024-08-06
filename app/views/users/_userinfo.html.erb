@@ -1,0 +1,28 @@
+<!--部分テンプレート作成予定ファイル-->
+
+<!--ユーザー編集画面-->
+<div class="info&new">
+<h3>User info</h3>
+  
+  <%= image_tag user.get_profile_image(100,100)  %>
+  
+  <p>name</p>
+  <h3><%= user.name %></h3>
+  <p>introduction</p>
+  <h3><%= user.introduction %></h3>
+  
+  <%= link_to edit_user_path(user), class: 'btn btn-block btn-outline-secondary' do %>
+  <i class="fa-solid fa-user-gear"></i>
+  <% end %>
+
+<h3>New Books</h3>
+  
+ <%= form_with model: book do |f| %>
+<label for="book title">Title</label>
+ <%= f.text_field :title %>
+ 
+ <label for="book opinion">Opinion</label>
+ <%= f.text_area :body %>
+ <button type="submit" class="btn btn-success">Create Book</button>
+<% end %>
+</div>
