@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root to: "home#top"
-  get "/home/about"
+   root to: "home#top"
+  get 'home/about', to: 'home#about',as: 'about'
+
 
   resources :books
   resources :users #userの後ろから　→　, only: [:show, :edit]を追加？

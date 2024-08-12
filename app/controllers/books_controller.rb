@@ -1,9 +1,12 @@
 class BooksController < ApplicationController
+ before_action :is_matching_login_user, only: [:edit, :update]
+ #before_action :correct_user, only: [:edit] 
   def index
     @books = Book.all
     @book = Book.new
     @user = current_user
     @profile_image = @user.profile_image
+    #@user1 = User.find(params[:id])
   end
 
   def show
@@ -55,6 +58,14 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :body, :user_id, :id)
+  end
+  
+  def is_matching_login_user
+    book = Book.find(params[:id])
+    #current_user.id = book.user.id
+    unless book.user.id == current_user.id
+      redirect_to books_path
+    end
   end
   
 end
